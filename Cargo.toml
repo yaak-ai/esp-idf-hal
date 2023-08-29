@@ -21,8 +21,12 @@ esp-idf-sys = ["dep:esp-idf-sys", "atomic-waker"]
 riscv-ulp-hal = []
 nightly = ["embedded-hal-async"]
 
+[patch.crates-io]
+esp-idf-sys = { git = "https://github.com/yaak-ai/esp-idf-sys", rev = "ff6e8961f4c09ecfcdd76fc11a52539260adf0b5", features = ["native"] }
+
 [dependencies]
 nb = "1.0.0"
+embedded-io = "0.4.0"
 embedded-can = "0.4.1"
 embedded-hal = "=1.0.0-alpha.10"
 embedded-hal-0-2 = { package = "embedded-hal", version = "0.2.7", features = ["unproven"] }

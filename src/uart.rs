@@ -907,6 +907,20 @@ impl<'d> core::fmt::Write for UartTxDriver<'d> {
     }
 }
 
+impl<'d> embedded_io::Io for UartTxDriver<'d> {
+    type Error = EspError;
+}
+
+impl<'d> embedded_io::blocking::Write for UartTxDriver<'d> {
+    fn write(&mut self, buf: &[u8]) -> Result<usize, Self::Error> {
+        self.write(buf)
+    }
+
+    fn flush(&mut self) -> Result<(), Self::Error> {
+        self.flush()
+    }
+}
+
 fn new_common<UART: Uart>(
     _uart: impl Peripheral<P = UART>,
     tx: Option<impl Peripheral<P = impl OutputPin>>,
